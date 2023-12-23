@@ -3,13 +3,19 @@ package com.blipblipcode.demoincompose
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
+import com.blipblipcode.demoincompose.ui.controls.GridWithColumnRow
+import com.blipblipcode.demoincompose.ui.controls.Label
 import com.blipblipcode.demoincompose.ui.theme.DemoInComposeTheme
 
 class MainActivity : ComponentActivity() {
@@ -19,28 +25,32 @@ class MainActivity : ComponentActivity() {
             DemoInComposeTheme {
                 // A surface container using the 'background' color from the theme
                 Surface(
-                    modifier = Modifier.fillMaxSize(),
+                    modifier = Modifier
+                        .fillMaxSize()
+                        .background(Color.Green),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                    Greeting("Android")
+
+                    Column {
+
+                        GridWithColumnRow(5, 3)
+                    }
+
+
                 }
             }
         }
     }
 }
 
-@Composable
-fun Greeting(name: String, modifier: Modifier = Modifier) {
-    Text(
-        text = "Hello $name!",
-        modifier = modifier
-    )
-}
 
 @Preview(showBackground = true, showSystemUi = true)
 @Composable
 fun GreetingPreview() {
     DemoInComposeTheme {
-        Greeting("Android")
+        Box() {
+            Label("BlipBlip")
+
+        }
     }
 }
