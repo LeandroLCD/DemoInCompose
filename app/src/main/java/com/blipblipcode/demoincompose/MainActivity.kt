@@ -9,13 +9,14 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
-import com.blipblipcode.demoincompose.ui.controls.GridWithColumnRow
 import com.blipblipcode.demoincompose.ui.controls.Label
+import com.blipblipcode.demoincompose.ui.controls.MyButtons
+import com.blipblipcode.demoincompose.ui.controls.MyIcons
 import com.blipblipcode.demoincompose.ui.theme.DemoInComposeTheme
 
 class MainActivity : ComponentActivity() {
@@ -31,9 +32,8 @@ class MainActivity : ComponentActivity() {
                     color = MaterialTheme.colorScheme.background
                 ) {
 
-                    Column {
-
-                        GridWithColumnRow(5, 3)
+                    Box(contentAlignment = Alignment.Center, modifier = Modifier.fillMaxSize()) {
+                        MyButtons()
                     }
 
 

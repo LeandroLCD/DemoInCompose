@@ -25,7 +25,7 @@ fun Label(text: String, modifier: Modifier = Modifier) {
         modifier = modifier
             .background(Color.Red)
             .horizontalScroll(ScrollState(0)),
-        color = Color.Blue,
+        color = Color.Red,
         fontSize = 30.sp,
         fontStyle = FontStyle.Normal,
         fontWeight = FontWeight.W900,
@@ -39,6 +39,7 @@ fun Label(text: String, modifier: Modifier = Modifier) {
             Log.d("compose", "width: ${textWidth.width}")
             Log.d("compose", "height: ${textWidth.height}")
         }
+
 
     )
 }
