@@ -1,7 +1,7 @@
 package com.blipblipcode.demoincompose.ui.controls
 
 import android.widget.Toast
-import androidx.compose.foundation.BorderStroke
+import androidx.compose.foundation.*
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.*
@@ -21,6 +21,9 @@ fun MyButtons(){
         0.5f to Color.Red,
         1f to Color.Blue
     )
+
+
+    val brush = Brush.horizontalGradient(colorStops = colorStops)
     Column {
         Spacer(modifier = Modifier.height(20.dp))
         Button(onClick = {
@@ -35,11 +38,20 @@ fun MyButtons(){
             containerColor = Color.Transparent
         )
         ) {
+            Box(Modifier.background(brush), contentAlignment = Alignment.Center){
+                Text(text = "Click")
+            }
+
+        }
+        Spacer(modifier = Modifier.height(20.dp))
+        GradientOutlinedButton(onClick = {
+            Toast.makeText(context, "GradientButton on Click", Toast.LENGTH_LONG).show()
+        },
+            modifier = Modifier,
+            gradient = brush){
             Text(text = "Click")
         }
         Spacer(modifier = Modifier.height(20.dp))
-
-
         ElevatedButton(onClick = {
             Toast.makeText(context, "ElevatedButton on Click", Toast.LENGTH_LONG).show()
         },
@@ -65,6 +77,41 @@ fun MyButtons(){
 
 
 
+}
+
+@Composable
+fun GradientOutlinedButton(
+    onClick: () -> Unit = { },
+    gradient : Brush,
+    modifier: Modifier = Modifier,
+    shape: Shape = ButtonDefaults.outlinedShape,
+    colors:ButtonColors = ButtonDefaults.buttonColors(containerColor = Color.Transparent),
+    elevation: ButtonElevation? = null,
+    border: BorderStroke? = ButtonDefaults.outlinedButtonBorder,
+    content: @Composable RowScope.() -> Unit
+) {
+    OutlinedButton(
+        modifier = modifier,
+        shape = shape,
+        colors = colors,
+        contentPadding = PaddingValues(0.dp),
+        elevation = elevation,
+        border = border,
+        onClick = { onClick() },
+    ) {
+        Box(
+            modifier = Modifier
+
+                .then(modifier).defaultMinSize(
+                    minWidth = ButtonDefaults.MinWidth,
+                    minHeight = ButtonDefaults.MinHeight
+
+                )
+                .background(gradient)
+                .padding(ButtonDefaults.ContentPadding),
+            contentAlignment = Alignment.Center,
+        ) { content }
+    }
 }
 
 @Preview(showBackground = true, showSystemUi = true)
